@@ -1,9 +1,8 @@
 import com.craftofprogramming.biblioteca.Livro;
 import com.craftofprogramming.biblioteca.ServicoDeBiblioteca;
 import com.craftofprogramming.biblioteca.Topico;
-import io.cucumber.java.pt.Dado;
-import io.cucumber.java.pt.Entao;
-import io.cucumber.java.pt.Quando;
+import io.cucumber.java.pt.*;
+import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 
 import java.util.Optional;
@@ -40,5 +39,16 @@ public class DefinicaoPassos {
     @Entao("Eu encontro o topico {}") //Deixando em branco Reconhece qualquer expressao
     public void euEncontroOTopico(Topico topicoEncontrado) {
         Assert.assertEquals(topicoEncontrado, topico.get());
+    }
+
+    @E("Que o total de livros carregados e {int}")
+    public void queOTotalDeLivrosCarregadosE(int totalDeLivros) {
+        Assert.assertThat(servicoDeBiblioteca.contagemDosLivros(), CoreMatchers.is(CoreMatchers.equalTo(totalDeLivros)));
+    }
+
+
+    @Mas("Eu nao encontro o topico {}")
+    public void euNaoEncontroOTopicoSCIFI(Topico topico) {
+        Assert.assertTrue(servicoDeBiblioteca.topicoMaisPopular().get()!=topico);
     }
 }
