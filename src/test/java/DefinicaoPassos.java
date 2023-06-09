@@ -10,7 +10,7 @@ import java.util.Optional;
 public class DefinicaoPassos {
 
     private ServicoDeBiblioteca servicoDeBiblioteca;
-    private Livro book;
+    private Livro livro;
     private Optional<Topico> topico;
 
     @Dado("Que a minha biblioteca esta inicializada")
@@ -21,15 +21,14 @@ public class DefinicaoPassos {
 
     @Quando("Eu pesquiso o livro {string}")
     public void euPesquisoOLivro(String bookTitle) {
-        book = servicoDeBiblioteca.pesquisaLivroPorTitulo(bookTitle);
+        livro = servicoDeBiblioteca.pesquisaLivroPorTitulo(bookTitle);
     }
 
     @Entao("Eu encontro esse livro")
     public void euEncontroEsseLivro() {
-       Assert.assertNotNull(book);
+       Assert.assertNotNull(livro);
 
     }
-
 
     @Quando("Eu pesquiso o topico mais popular")
     public void euPesquisoOTopicoMaisPopular() {
@@ -50,5 +49,18 @@ public class DefinicaoPassos {
     @Mas("Eu nao encontro o topico {}")
     public void euNaoEncontroOTopicoSCIFI(Topico topico) {
         Assert.assertTrue(servicoDeBiblioteca.topicoMaisPopular().get()!=topico);
+    }
+
+    @Quando("Eu pesquiso o livro {string} e {}")
+    public void euPesquisoOLivroE(String titulo, Topico topico) {
+        final Livro livro = servicoDeBiblioteca.pesquisaLivroPorTitulo(titulo);
+        Assert.assertNotNull(livro);
+        Assert.assertEquals(topico, livro.topico());
+    }
+
+    @Entao("Eu encontro o livro {string}")
+    public void euEncontroOLivro(String titulo) {
+        final Livro livro = servicoDeBiblioteca.pesquisaLivroPorTitulo(titulo);
+        Assert.assertNotNull(livro);
     }
 }
