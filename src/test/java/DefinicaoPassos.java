@@ -1,3 +1,4 @@
+import com.craftofprogramming.ContextoDeTeste;
 import com.craftofprogramming.biblioteca.Livro;
 import com.craftofprogramming.biblioteca.ServicoDeBiblioteca;
 import com.craftofprogramming.biblioteca.Topico;
@@ -15,12 +16,19 @@ public class DefinicaoPassos {
 
     @Dado("Que a minha biblioteca esta inicializada")
     public void queAMinhaBibliotecaEstaInicializada() {
-        servicoDeBiblioteca = ServicoDeBiblioteca.obtemServico();
+        //servicoDeBiblioteca = ServicoDeBiblioteca.obtemServico();
+        ContextoDeTeste.INSTANCIA.obtemServico(true);
     }
 
+    @Dado("Que a minha biblioteca esta inicializada vazia")
+    public void queAMinhaBibliotecaEstaInicializadaVazia() {
+        //servicoDeBiblioteca = ServicoDeBiblioteca.obtemServico(false);
+        ContextoDeTeste.INSTANCIA.obtemServico(false);
+    }
 
     @Quando("Eu pesquiso o livro {string}")
     public void euPesquisoOLivro(String bookTitle) {
+
         livro = servicoDeBiblioteca.pesquisaLivroPorTitulo(bookTitle);
     }
 
@@ -63,4 +71,5 @@ public class DefinicaoPassos {
         final Livro livro = servicoDeBiblioteca.pesquisaLivroPorTitulo(titulo);
         Assert.assertNotNull(livro);
     }
+
 }
