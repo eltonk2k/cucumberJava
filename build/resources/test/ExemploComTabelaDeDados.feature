@@ -25,7 +25,7 @@ Funcionalidade: Exemplo de uso de tabela de dados
 #    Quando Eu pesquiso o livro "LivroQuatro" e FINANCAS
 #    Entao Eu encontro o livro com "LivroQuatro"
 
-#  Cenário: Exemplo com tipo definido pelo usuario
-#    Dado Que a minha biblioteca esta inicializada vazia
-#    Quando Eu adiciono o livro Cucumber, 42, COMPUTACAO, 2021, Nilton
-#    Entao Eu encontro o livro com "Cucumber"
+  Cenário: Exemplo com tipo definido pelo usuario
+    Dado Que a minha biblioteca esta inicializada vazia
+    Quando Eu adiciono o livro Cucumber, 42, COMPUTACAO, 2021, Nilton
+    Entao Eu encontro o livro com "Cucumber"

@@ -52,7 +52,7 @@ public class DefinicaoPassosComArgumentos {
         livros.forEach(livro -> biblioteca.adiciona(livro));
     }
 
-    @ParameterType(".*")
+    @ParameterType(".*")//expressao regular que capturar  tudo do texto
     public Livro livro(String descricaoLivro) {
         final String[] split = descricaoLivro.split(",");
         return new Livro(
@@ -64,6 +64,7 @@ public class DefinicaoPassosComArgumentos {
         );
     }
 
+
     @ParameterType("COMPUTACAO|SCI_FI|FINANCAS|ROMANCE")
     public Topico Topico(String topico) {
         return Topico.valueOf(topico);
@@ -71,6 +72,7 @@ public class DefinicaoPassosComArgumentos {
 
     @Quando("Eu adiciono o livro {livro}")
     public void euAdicionoOLivro(Livro livro) {
+
         ContextoDeTeste.INSTANCIA.biblioteca().adiciona(livro);
     }
 }
